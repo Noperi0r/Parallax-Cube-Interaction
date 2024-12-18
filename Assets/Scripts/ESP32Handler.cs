@@ -46,16 +46,17 @@ public class ESP32Handler : MonoBehaviour
 
     void Update()
     {
-        //lock (_lockObject)
-        //{
-        //    if (!string.IsNullOrEmpty(_receivedStr))
-        //    {
-        //        Debug.Log(_receivedStr);
-        //        _receivedStr = ""; 
-        //    }
-        //}
+        lock (_lockObject)
+        {
+            if (!string.IsNullOrEmpty(_receivedStr))
+            {
+                Debug.Log(_receivedStr);
+                _receivedStr = "";
+            }
+        }
 
-        ProcessRawPosToVirtual();
+        Vector3 pos = GetSensorPos();
+        //testobj.transform.position = new Vector3(pos.x, 0, pos.z);    
     }
 
     void ReadSerialData()
@@ -89,19 +90,6 @@ public class ESP32Handler : MonoBehaviour
                 Debug.LogWarning($"Error reading serial data: {ex.Message}");
             }
         }
-    }
-
-    void ProcessRawPosToVirtual()
-    {
-        // Get sensor pos
-        Vector3 sensorPos = _sensorRawPos;
-
-        // Convert to Unity pos
-        _virtualPos = sensorPos * 0.01f;
-
-        Debug.Log($"sensorRAW: {sensorPos} // virtualPos: {_virtualPos}");
-        Debug.DrawRay(Vector3.zero, _virtualPos, Color.green);
-        testobj.transform.position = _virtualPos;
     }
 
     void OnApplicationQuit()
