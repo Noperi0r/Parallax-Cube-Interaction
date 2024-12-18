@@ -5,10 +5,8 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    [SerializeField] Transform _cubeCenter;
     [SerializeField] List<Camera> _cams = new List<Camera>();
-
-    Vector3 _camToCenterVec;
+    [SerializeField] ESP32Handler _esp32Handler;
 
     void Start()
     {
@@ -22,10 +20,7 @@ public class CameraManager : MonoBehaviour
 
     void Update()
     {
-        //_camToCenterVec = _cubeCenter.position - transform.position;
-        //Quaternion.LookRotation(_camToCenterVec);
+        // TODO: Sensor on trigger
     }
-
-
 
 }
