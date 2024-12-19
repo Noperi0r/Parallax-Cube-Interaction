@@ -4,7 +4,7 @@ using UnityEngine;
 using System.IO.Ports;
 using System.Threading;
 
-public class ESP32Handler : MonoBehaviour
+public class SensorHandler : MonoBehaviour
 {
     SerialPort _dataStream = new SerialPort("COM5", 115200);
     Thread _readThread;
@@ -14,14 +14,14 @@ public class ESP32Handler : MonoBehaviour
     public bool keepReading => _keepReading;
 
     string _receivedStr = "";
-    string[] _posInString = new string[3];
-    Vector3 _sensorRawPos;
-    Vector3 _virtualPos;
+    string[] _vecInString = new string[3];
+    Vector3 _sensorRawVec;
+    public Vector3 sensorRawVec => _sensorRawVec;
 
-    public GameObject testobj;
-
-    public Vector3 GetSensorPos() { return _sensorRawPos; }
-
+    // Deprecated 
+    //string[] _posInString = new string[3];
+    //Vector3 _sensorRawPos;
+    
     void Start()
     {
         try
@@ -55,8 +55,7 @@ public class ESP32Handler : MonoBehaviour
             }
         }
 
-        Vector3 pos = GetSensorPos();
-        //testobj.transform.position = new Vector3(pos.x, 0, pos.z);    
+        Vector3 pos = _sensorRawVec * Time.deltaTime;
     }
 
     void ReadSerialData()
@@ -72,12 +71,12 @@ public class ESP32Handler : MonoBehaviour
                     //Debug.Log(_receivedStr);
                     if (char.IsDigit(_receivedStr[0]) || _receivedStr[0] == '-')
                     {
-                        _posInString = _receivedStr.Split(',');
+                        _vecInString = _receivedStr.Split(',');
 
-                        // Arduino x: right, y: front, z: up 
-                        _sensorRawPos.x = float.Parse(_posInString[0]); 
-                        _sensorRawPos.y = float.Parse(_posInString[2]);
-                        _sensorRawPos.z = float.Parse(_posInString[1]);
+                        // Arduino x: right, y: front, z: up . Unit: cm/s 
+                        _sensorRawVec.x = float.Parse(_vecInString[0]); 
+                        _sensorRawVec.y = float.Parse(_vecInString[2]);
+                        _sensorRawVec.z = float.Parse(_vecInString[1]);
                     }
                     else
                     {

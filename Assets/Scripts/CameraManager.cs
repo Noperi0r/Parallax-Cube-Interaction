@@ -6,7 +6,6 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     [SerializeField] List<Camera> _cams = new List<Camera>();
-    [SerializeField] ESP32Handler _esp32Handler;
 
     void Start()
     {
@@ -16,11 +15,6 @@ public class CameraManager : MonoBehaviour
             if (cam)
                 _cams.Add(transform.GetChild(i).GetComponent<Camera>());
         }
-    }
-
-    void Update()
-    {
-        // TODO: Sensor on trigger
     }
 
 }
