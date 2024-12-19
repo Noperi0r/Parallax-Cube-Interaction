@@ -1,0 +1,34 @@
+{
+    "name": "IA_FlowControl",
+    "maps": [
+        {
+            "name": "FlowActionMap",
+            "id": "6538a852-4d58-49cc-8440-fdbbc046d63b",
+            "actions": [
+                {
+                    "name": "Reset",
+                    "type": "Button",
+                    "id": "cb7007bf-da37-4cfa-abce-7be4a9714693",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4d36edfe-0a00-487d-ae5c-f2f49c2dd6a6",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reset",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
