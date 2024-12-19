@@ -23,4 +23,12 @@ public class FlowController : MonoBehaviour
         _camObj.transform.position = new Vector3(0, _camObj.transform.position.y, _camObj.transform.position.z);
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            ResetCam();
+        }
+    }
+
 }
