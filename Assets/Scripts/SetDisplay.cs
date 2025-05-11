@@ -15,9 +15,11 @@ public class SetDisplay : MonoBehaviour
             Display.displays[2].Activate();
         if (Display.displays.Length > 3) // 4 
             Display.displays[3].Activate();
-        //if (Display.displays.Length > 4)
-        //    Display.displays[4].Activate();
-
+        if (Display.displays.Length > 4)
+            Display.displays[4].Activate();
+        if (Display.displays.Length > 5)
+            Display.displays[5].Activate();
+        
         // 4> 
     }
 
